@@ -960,5 +960,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
+vim.keymap.set('n', '<C-p>', ':cprev<CR>')
+vim.keymap.set('n', '<C-n>', ':cnext<CR>')
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
