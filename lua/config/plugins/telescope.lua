@@ -47,16 +47,27 @@ return {
         vim.keymap.set('n', '<leader>sr', builtin.resume)
         vim.keymap.set('n', '<leader>sh', builtin.help_tags)
 
-        vim.keymap.set('n', '<leader>gs', function()
+        -- in my main project we have multiple repos connected
+        -- cwd is parent dir of these repos, so I need to make one step inside to exec git commands
+        local get_first_depth_dir = function()
           local current_buffer_path = vim.api.nvim_buf_get_name(0)
           local relative_path = vim.fn.fnamemodify(current_buffer_path, ':.')
 
           -- Get first directory
           local parts = vim.split(relative_path, '/')
-          local first_depth = parts[1]
+          return parts[1]
+        end
 
+        vim.keymap.set('n', '<leader>gs', function()
           builtin.git_status {
-            cwd = first_depth,
+            cwd = get_first_depth_dir(),
+          }
+        end)
+
+        -- using for git [sw]
+        vim.keymap.set('n', '<leader>sw', function()
+          builtin.git_branches {
+            cwd = get_first_depth_dir(),
           }
         end)
       end,

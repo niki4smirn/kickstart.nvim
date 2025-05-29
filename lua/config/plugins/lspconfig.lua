@@ -88,7 +88,6 @@ return {
           settings = {
             gopls = {
               completeUnimported = true,
-              usePlaceholders = true,
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -100,6 +99,10 @@ return {
               },
             },
           },
+        },
+
+        clangd = {
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
         },
 
         lua_ls = {},
